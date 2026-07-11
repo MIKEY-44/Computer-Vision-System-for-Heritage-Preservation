@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  # Backend Service
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: pushkarani_backend
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - FLASK_APP=app.py
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./densenet:/app/densenet:ro
+      - ./efficientnetv2:/app/efficientnetv2:ro
+      - ./convnext:/app/convnext:ro
+      - ./vgg16:/app/vgg16:ro
+      - ./resnet50:/app/resnet50:ro
+      - ./mobilenet:/app/mobilenet:ro
+      - ./mobilenetv3:/app/mobilenetv3:ro
+      - ./inception:/app/inception:ro
+      - ./swin:/app/swin:ro
+      - ./dinov2:/app/dinov2:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    networks:
+      - pushkarani_network
+
+  # Frontend Service
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: pushkarani_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://backend:5000/api
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    networks:
+      - pushkarani_network
+
+  # Optional: Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: pushkarani_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
+      - frontend
+    restart: unless-stopped
+    networks:
+      - pushkarani_network
+
+networks:
+  pushkarani_network:
+    driver: bridge
+
+volumes:
+  backend_data:
+  frontend_data:
