@@ -2086,19 +2086,6 @@ Your support helps increase the visibility of research in **Artificial Intellige
 
 ---
 
-# 👨‍💻 Authors
-
-**Mahant M. Mhalsekar**  
-**Omkar K.**  
-**Prajwal Poojary**  
-**Sandesh R. Naik**
-
-Department of Computer Science and Engineering  
-Canara Engineering College  
-Visvesvaraya Technological University (VTU)
-
----
-
 # 🙏 Acknowledgements
 
 We sincerely thank our project guide **Dr. Gurudeva S. Hiremath**, the faculty members of the Department of Computer Science and Engineering, Canara Engineering College, and everyone who supported this research throughout its development.
