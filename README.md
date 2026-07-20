@@ -1338,7 +1338,7 @@ The confusion matrix provides detailed insight into prediction performance for e
 
 <p align="center">
 
-<img src="assets/confusion_matrix.jpeg" width="75%">
+<img src="assets/training_loss.jpeg" width="75%">
 
 </p>
 
