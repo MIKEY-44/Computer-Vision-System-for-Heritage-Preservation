@@ -319,17 +319,6 @@ The application also presents educational information and interesting facts abou
 
 ---
 
-# 🎥 Demo
-
-A short demonstration of the system can be added below.
-
-> **Tip:** Record your application using **ScreenToGif** or **OBS Studio**, export it as a GIF, and place it inside the `assets/` folder.
-
-<p align="center">
-  <img src="assets/demo.gif" width="95%" alt="Application Demo"/>
-</p>
-
----
 
 # 🏗️ System Architecture
 
