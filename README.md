@@ -236,14 +236,6 @@ Dataset Characteristics:
 
 ---
 
-# 📸 Demo & Screenshots
-
-> **Note**
->
-> Replace the placeholder images below with actual screenshots from the running application.
-> Store all images inside the `assets/` directory.
-
----
 
 ## 🏠 Home Page
 
